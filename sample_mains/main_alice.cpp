@@ -23,9 +23,10 @@ ZZ find_min(ZZX& f) {
 
 int main() {
 
-	ofstream output_file;
 
-	output_file.open("Nq_tables_raw.csv");
+	// File for output
+	// ofstream output_file;
+	// output_file.open("Nq_tables_raw.csv");
 
 
 	default_random_engine rand_seed = default_random_engine(time(0));
@@ -35,13 +36,11 @@ int main() {
 	int qs[] = {32, 64, 128, 256};
 	int d;
 
-	output_file << "N,q,outcome\n";
+	// output_file << "N,q,outcome\n";
 
-	int trials = 10000;
+	int trials = 1000;
 
 	for (int i=0; i<trials; i++) {
-
-		if (i % 1000 == 0) cout << "i = " << i << "\n";
 
 		for (int N : Ns) {
 			for (int q : qs) {
@@ -78,8 +77,8 @@ int main() {
 							outcome = "Success";
 						}
 
-						// cout << "N: " << N << " q: " << q << "Is rotation: " << NTRUBreak::is_rotation(m, m_recovered, N) << "\n";
-						output_file << N << "," << q << "," << outcome << "\n";
+						cout << "N: " << N << " q: " << q << "Is rotation: " << NTRUBreak::is_rotation(m, m_recovered, N) << "\n";
+						// output_file << N << "," << q << "," << outcome << "\n";
 
 						finished_trial = true;
 
@@ -93,6 +92,6 @@ int main() {
 
 	}
 
-	output_file.close();
+	// output_file.close();
 
 }
