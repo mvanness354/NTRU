@@ -12,3 +12,8 @@ details on how to install NTL.
 A compile script, `ntru_compile.sh`, is provided to assist with compilation.  This script uses the C++ compiler g++ and the appropriate flags for compilation.
 Simply supply the script with the main file which you are using, for example, `./ntru_compile.sh example_main.cpp`.  It is also acceptable to use a different
 C++ compiler, just make sure to compile all of the files in the `src` directory.
+
+# Functionality
+In the `src` directory, there are two files that provide the core functiionality: NTRUBreak and NTRUEncrypt.  NTRUEncrypt is used for running the NTRU cryptosystem, including generating keys, encrypting messages, and decrypting ciphertexts.  NTRUBreak is used to simulate attacks on the NTRU cryptosystem by running variations of the LLL lattice reduction algorithm.  This can be used to access the security of NTRU for different parameter choices.  Please see the respective header files for details on the methods for each class.
+
+In the `sample_mains` directory, there are two example main files that demonstrate the functionality of NTRUBreak and NTRUEncrypt.
