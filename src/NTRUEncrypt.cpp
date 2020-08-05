@@ -239,15 +239,6 @@ ZZX NTRUEncrypt::decrypt(ZZ_pX& e, int low, int high) {
 	return m_recovered;
 }
 
-ZZX NTRUEncrypt::decrypt_times(ZZ_pX& e, ZZX& multiplier) {
-	ZZ_pX mult_mod = reduce(multiplier);
-	ZZ_pX f_modq = reduce(f);
-
-	ZZX decrypt_key = center_lift(MulMod(f_modq, mult_mod, cyclo));
-
-	return decrypt(e, decrypt_key);
-}
-
 ZZ_pX NTRUEncrypt::get_public_key() {
 	return MulMod(inverse2k(reduce(f)), reduce(g), cyclo);
 }
