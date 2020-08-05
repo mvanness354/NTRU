@@ -23,8 +23,6 @@ ZZ find_min(ZZX& f) {
 
 int main() {
 
-	// ofstream output_file;
-	// output_file.open("N_vs_Time_data.csv", ios_base::app);
 
 	default_random_engine rand_seed = default_random_engine(time(0));
 
@@ -33,9 +31,8 @@ int main() {
 	int qs[] = {128};
 	int divs[] = {3};
 	int d;
-	int block_sizes[] = {2, 2, 2, 2, 4, 6, 10, 15};
+	int block_sizes[] = {2, 4, 6, 10, 15};
 
-	// output_file << "N,q,d,beta,Time(millis)\n";
 
 	int trials = 40;
 
@@ -76,7 +73,7 @@ int main() {
 
 								ZZX f_recovered = ntru_break.find_ternary(pub_key);
 								if (deg(f_recovered) >= 0) {
-									// output_file << N << "," << q << "," << d << "," << block_size << "," << time << "\n";
+									cout << N << "," << q << "," << d << "," << block_size << "," << time << "\n";
 									break;
 
 								} else {
@@ -84,16 +81,6 @@ int main() {
 								}
 
 							}
-
-							// ZZX f_recovered = ntru_break.find_ternary(pub_key);
-							// // ZZX m_broken = ntru_encrypt.decrypt(e, f_recovered);
-
-							// // bool is_rotation = NTRUBreak::is_rotation(m, m_broken, N);
-
-							// string outcome;
-							// if (deg(f_recovered) >= 0) outcome = "Success"; else outcome = "Failure";
-
-							// output_file << N << "," << q << "," << outcome << "\n";
 
 							finished = true;
 
@@ -108,5 +95,4 @@ int main() {
 		}
 	}
 
-	// output_file.close();
 }

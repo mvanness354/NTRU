@@ -3,42 +3,17 @@
 #include <fstream>
 
 
-ZZ find_max(ZZX& f) {
-	ZZ max = f[0];
-	for (int i=1; i<f.rep.length(); i++) {
-		if (f[i] > max) max = f[i];
-	}
-	return max;
-}
-
-ZZ find_min(ZZX& f) {
-	ZZ min = f[0];
-	for (int i=1; i<f.rep.length(); i++) {
-		if (f[i] < min) min = f[i];
-	}
-	return min;
-}
-
-
 
 int main() {
-
-
-	// File for output
-	// ofstream output_file;
-	// output_file.open("Nq_tables_raw.csv");
 
 
 	default_random_engine rand_seed = default_random_engine(time(0));
 
 	int p = 3;
-	// int Ns[] = {17, 53, 101, 257};
-	int Ns[] = {101};
-	// int qs[] = {32, 64, 128, 256};
-	int qs[] = {128};
+	int Ns[] = {17, 53, 101, 257};
+	int qs[] = {32, 64, 128, 256};
 	int d;
 
-	// output_file << "N,q,outcome\n";
 
 	int trials = 1000;
 
@@ -79,8 +54,7 @@ int main() {
 							outcome = "Success";
 						}
 
-						// cout << "N: " << N << " q: " << q << "Is rotation: " << NTRUBreak::is_rotation(m, m_recovered, N) << "\n";
-						// output_file << N << "," << q << "," << outcome << "\n";
+						cout << "N: " << N << " q: " << q << "Outcome: " << outcome << "\n";
 
 						finished_trial = true;
 
@@ -93,7 +67,5 @@ int main() {
 		}
 
 	}
-
-	// output_file.close();
 
 }
