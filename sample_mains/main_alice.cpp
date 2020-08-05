@@ -32,8 +32,10 @@ int main() {
 	default_random_engine rand_seed = default_random_engine(time(0));
 
 	int p = 3;
-	int Ns[] = {17, 53, 101, 257};
-	int qs[] = {32, 64, 128, 256};
+	// int Ns[] = {17, 53, 101, 257};
+	int Ns[] = {101};
+	// int qs[] = {32, 64, 128, 256};
+	int qs[] = {128};
 	int d;
 
 	// output_file << "N,q,outcome\n";
@@ -64,11 +66,11 @@ int main() {
 						ZZX m_recovered = ntru_encrypt.decrypt(e);
 
 						bool is_rotation = NTRUBreak::is_rotation(m, m_recovered, N);
-						string outcome;
 
+						string outcome;
 						if (!is_rotation) {
-							ZZX a = ntru_encrypt.get_a(m);
-							if (find_max(a) - find_min(a) < q) {
+							ZZ width = ntru_encrypt.get_width(m);
+							if (width < q) {
 								outcome = "Wrap_Failure";
 							} else {
 								outcome = "Gap Failure";
@@ -77,7 +79,7 @@ int main() {
 							outcome = "Success";
 						}
 
-						cout << "N: " << N << " q: " << q << "Is rotation: " << NTRUBreak::is_rotation(m, m_recovered, N) << "\n";
+						// cout << "N: " << N << " q: " << q << "Is rotation: " << NTRUBreak::is_rotation(m, m_recovered, N) << "\n";
 						// output_file << N << "," << q << "," << outcome << "\n";
 
 						finished_trial = true;

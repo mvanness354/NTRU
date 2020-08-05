@@ -48,9 +48,9 @@ class NTRUEncrypt {
 		// Decrypts a ciphertext e, using low and high and the boundaries for the lift
 		ZZX decrypt(ZZ_pX& e, int low, int high);
 
-		ZZX get_a(ZZX& m);
-
-		ZZX get_a(ZZX& m, ZZX& f_prime);
+		// Gets the width of the polynomial pgr + fm, meaning the max - min coefficients,
+		// which is useful for finding Gap and Wrap failures
+		ZZ get_width(ZZX& m);
 
 	private:
 		// NTRU params

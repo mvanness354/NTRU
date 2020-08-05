@@ -243,18 +243,17 @@ ZZ_pX NTRUEncrypt::get_public_key() {
 	return MulMod(inverse2k(reduce(f)), reduce(g), cyclo);
 }
 
-ZZX NTRUEncrypt::get_a(ZZX& m) {
 
+ZZ NTRUEncrypt::get_width(ZZX& m) {
 	ZZX cyclo_tmp = ZZX(INIT_MONO, N) - 1;
+	ZZX a = MulMod(f, m, cyclo_tmp) + (p * MulMod(center_lift(r), g, cyclo_tmp));
 
-	return MulMod(f, m, cyclo_tmp) + (p * MulMod(center_lift(r), g, cyclo_tmp));
+	ZZ max = a[0];
+	ZZ min = a[0];
+	for (int i=1; i<a.rep.length(); i++) {
+		if (a[i] > max) max = a[i];
+		if (a[i] < min) min = a[i];
+	}
 
-}
-
-ZZX NTRUEncrypt::get_a(ZZX& m, ZZX& f_prime) {
-
-	ZZX cyclo_tmp = ZZX(INIT_MONO, N) - 1;
-
-	return MulMod(f_prime, m, cyclo_tmp) + (p * MulMod(center_lift(r), g, cyclo_tmp));
-
+	return max - min;
 }
